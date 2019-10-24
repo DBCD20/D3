@@ -27,7 +27,12 @@ var quotes = [
   }
 ];
 
-const colors = {"G": "#ffe7d1", "PG": "#f6c89f", "PG-13": "#4b8e8d", "R": "#396362"}
+const colors = {
+  "G": ["#ffe7d1"],
+  "PG": ["#f6c89f"],
+  "PG-13": ["#4b8e8d"],
+  "R": ["#396362", "white"]
+}
 
 d3.select("#quotes")
   .style('list-style', "none")
@@ -41,4 +46,5 @@ d3.select("#quotes")
     .style("border-radius", "4px")
     .style("padding", "10px")
     .style("font-size", d => (d.quote.length < 25 ? "2em" : "1em"))
-    .style("background", d => colors[d.rating])
+    .style("background", d => colors[d.rating][0])
+    .style("color", d => (d.rating === "R" && colors["R"][1]))
